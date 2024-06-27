@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrapper">
+    <h1 class="h2">Klasifikasi Penyakit TB <br>Dengan Metode KNN</h1>
+    <form action="{{ url_for('classification')}}" method="post">
+        <div class="row">
+            <div class="col-sm-6 mb-3">
+                <label class="form-label">Umur</label>
+                <input type="number" name="umur" placeholder="umur" class="form-control" required/>
+            </div>
+            <div class="col-sm-6 mb-3">
+                <label class="form-label">Jenis Kelamin</label>
+                <select name="jenis_kelamin" class="form-control">
+                    <option value="1">Laki-laki</option>
+                    <option value="0">Perempuan</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 mb-3">
+                <label class="form-label">Foto Toraks</label>
+                <select name="foto_toraks" class="form-control">
+                    <option value="1">Tidak Dilakukan</option>
+                    <option value="1">Positif</option>
+                    <option value="0">Negatif</option>
+                </select>
+            </div>
+            <div class="col-sm-6 mb-3">
+                <label class="form-label">Status HIV</label>
+                <select name="status_hiv" class="form-control">
+                    <option value="0">Tidak Diketahui</option>
+                    <option value="1">Positif</option>
+                    <option value="0">Negatif</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 mb-3">
+                <label class="form-label">Riwayat Diabetes</label>
+                <select name="riwayat_diabetes" class="form-control">
+                    <option value="0">Tidak Diketahui</option>
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
+                </select>
+            </div>
+            <div class="col-sm-6 mb-3">
+                <label class="form-label">Hasil TCM</label>
+                <select name="hasil_tcm" class="form-control">
+                    <option value="1">Tidak Dilakukan</option>
+                    <option value="2">Rif Resisten</option>
+                    <option value="1">Rif Sensitif</option>
+                    <option value="0">Negatif</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-4">
+            <button style="width: 100%; background-color: rgb(66, 66, 66);" type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

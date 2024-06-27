@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="sub-container"></div>
+    <h1>Data Understanding</h1>
+    <div class="sub-container"></div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>UMUR</th>
+                    <th>JENIS_KELAMIN</th>
+                    <th>KECAMATAN</th>
+                    <th>FOTO_TORAKS</th>
+                    <th>STATUS_HIV</th>
+                    <th>RIWAYAT_DIABETES</th>
+                    <th>HASIL_TCM</th>
+                    <th>LOKASI_ANATOMI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row['UMUR'] }}</td>
+                    <td>{{ row['JENIS KELAMIN'] }}</td>
+                    <td>{{ row['KECAMATAN'] }}</td>
+                    <td>{{ row['FOTO TORAKS'] }}</td>
+                    <td>{{ row['STATUS HIV'] }}</td>
+                    <td>{{ row['RIWAYAT DIABETES'] }}</td>
+                    <td>{{ row['HASIL TCM'] }}</td>
+                    <td>{{ row['LOKASI ANATOMI'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="sub-container" id="section1">
+        <h4>Penjelasan mengenai atribut</h4><br>
+        <div class="feature">
+            <strong>1. Umur:</strong> Menyimpan informasi tentang usia pasien yang menderita TBC.
+        </div>
+        <div class="feature">
+            <strong>2. Jenis Kelamin:</strong> Menyajikan jenis kelamin pasien.
+        </div>
+        <div class="feature">
+            <strong>3. Kecamatan:</strong> Memberikan informasi tentang wilayah asal pasien.
+        </div>
+        <div class="feature">
+            <strong>4. Foto Toraks:</strong> Merupakan gambaran tentang kondisi dada pasien.
+            <div class="sub-feature">
+                <strong>- Positif:</strong> Menunjukkan hasil pemeriksaan sinar-X yang mengindikasikan adanya perubahan abnormal di dalam dada.
+            </div>
+            <div class="sub-feature">
+                <strong>- Negatif:</strong> Menyatakan hasil pemeriksaan sinar-X yang tidak menunjukkan adanya perubahan abnormal di dalam dada.
+            </div>
+        </div>
+        <div class="feature">
+            <strong>5. Status HIV:</strong> Menyajikan informasi mengenai status HIV pasien.
+            <div class="sub-feature">
+                <strong>- Positif:</strong> Menunjukkan pasien terinfeksi HIV.
+            </div>
+            <div class="sub-feature">
+                <strong>- Negatif:</strong> Menandakan ketiadaan infeksi HIV pada pasien.
+            </div>
+        </div>
+        <div class="feature">
+            <strong>6. Riwayat Diabetes:</strong> Mencatat apakah pasien memiliki riwayat diabetes atau tidak.
+        </div>
+        <div class="feature">
+            <strong>7. Hasil TCM:</strong> Menunjukkan hasil uji kepekaan obat terhadap rifampisin, antibiotik penting dalam pengobatan TB.
+            <div class="sub-feature">
+                <strong>- Negatif:</strong> Menyatakan ketika bakteri TB tidak tumbuh atau tidak terdeteksi dalam tes kultur.
+            </div>
+            <div class="sub-feature">
+                <strong>- Rif Sensitif:</strong> Menunjukkan bahwa bakteri TB sensitif terhadap rifampisin.
+            </div>
+            <div class="sub-feature">
+                <strong>- Rif Resisten:</strong> Menunjukkan bahwa bakteri TB tidak sensitif terhadap rifampisin.
+            </div>
+        </div>
+    </div>
+    <div class="sub-container" id="section2">
+        <h4>Kelas Pada Data</h4>
+        <div class="feature">
+            <strong class="class-title">Kelas Paru:</strong>
+            <div class="sub-feature">
+                Ini mengacu pada organ utama yang terlibat dalam infeksi TBC. Tuberkulosis paru adalah bentuk paling umum dari penyakit ini, di mana bakteri Mycobacterium tuberculosis menginfeksi paru-paru.
+            </div>
+        </div>
+    
+        <div class="feature">
+            <strong class="class-title">Kelas Ekstra Paru:</strong>
+            <div class="sub-feature">
+                Merupakan infeksi TBC di luar paru-paru. Infeksi ini dapat menyerang organ atau jaringan lain di tubuh, seperti pleura (lapisan tipis yang melapisi paru-paru), kelenjar limfe, tulang, sendi, ginjal, otak, dan bagian lain dari tubuh.
+            </div>
+        </div>
+    </div><br><br id="section3">
+    <h1>Bussines Understanding</h1>
+    <div class="sub-container">
+        <div class="section">
+            <h4>Latar Belakang</h4>
+            <div class="section-content">
+                Penyakit tuberkulosis (TBC) merupakan masalah kesehatan global yang serius, dengan dampak yang signifikan terhadap kesejahteraan masyarakat. Memahami pola infeksi dan lokasi anatomis di mana TBC dapat terjadi penting untuk mengembangkan strategi pencegahan dan pengobatan yang efektif.
+            </div>
+        </div>
+    
+        <div class="section">
+            <h4>Tujuan Proyek</h4>
+            <div class="section-content">
+                Proyek ini bertujuan untuk menganalisis dataset TBC yang mencakup informasi tentang lokasi anatomis infeksi TBC, serta faktor-faktor lain seperti usia, jenis kelamin, status HIV, dan riwayat diabetes. Dengan demikian, kami berharap dapat mengidentifikasi pola-pola yang berguna dalam penanganan dan pengendalian penyakit ini.
+            </div>
+        </div>
+    
+        <div class="section">
+            <h4>Manfaat Bisnis</h4>
+            <div class="section-content">
+                Pemahaman yang mendalam tentang lokasi anatomis infeksi TBC dan faktor-faktor yang mempengaruhinya dapat memberikan panduan yang berharga bagi praktisi kesehatan, peneliti, dan pembuat kebijakan dalam mengembangkan strategi pencegahan yang lebih efektif dan meningkatkan akses terhadap perawatan yang berkualitas bagi individu yang terinfeksi.
+            </div>
+        </div>
+    
+        <div class="section">
+            <h4>Tujuan Penelitian</h4>
+            <div class="section-content">
+                Tujuan utama dari penelitian ini adalah untuk mengidentifikasi pola-pola korelasi antara lokasi anatomis infeksi TBC dengan faktor-faktor demografis dan medis lainnya, serta untuk menyelidiki apakah ada perbedaan dalam karakteristik pasien antara infeksi TBC paru dan ekstra paru.
+            </div>
+        </div>
+    
+        <div class="section">
+            <h4>Lain-lain</h4>
+            <div class="section-content">
+                Analisis ini diharapkan dapat memberikan wawasan tambahan kepada komunitas medis tentang epidemiologi dan karakteristik klinis penyakit TBC, sehingga dapat memberikan landasan yang lebih kuat untuk pengambilan keputusan klinis yang lebih baik dan peningkatan strategi pengendalian penyakit.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

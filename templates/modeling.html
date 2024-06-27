@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Modeling</h1>
+    <div class="sub-container">Preprocessing dalam pengolahan data adalah serangkaian langkah atau teknik yang digunakan untuk membersihkan, mengubah, dan mempersiapkan data mentah menjadi bentuk yang lebih sesuai untuk analisis atau pemodelan data. Tujuan utama dari preprocessing adalah untuk meningkatkan kualitas data, menghilangkan noise atau gangguan, serta membuat data siap untuk diproses oleh algoritma pembelajaran mesin atau model statistik.
+        <div class="section">
+            
+            <br><h3 id="section1">Langkah-langkah Modeling:</h3>
+            <h4>Memisahkan fitur dan label dari data latih dan uji</h4>
+            <p>Fitur adalah variabel input, dan label adalah variabel output yang ingin diprediksi.</p>
+        </div>
+        <div class="section">
+            <h4>Splitting dataset</h4>
+            <p>Dalam dataset ini, terdapat atribut yang tidak berdampak pada penentuan apakah seorang pasien menderita TBC paru atau TBC Ekstra Paru. Salah satu contoh fitur yang tidak berguna adalah informasi tentang kecamatan. Oleh karena itu, akan lebih efisien untuk menghapus fitur tersebut dari dataset.</p>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <div style="max-width: 400px;">Data Train
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>UMUR</th>
+                                <th>JENIS_KELAMIN</th>
+                                <th>FOTO_TORAKS</th>
+                                <th>STATUS_HIV</th>
+                                <th>RIWAYAT_DIABETES</th>
+                                <th>HASIL_TCM</th>
+                                <th>LOKASI_ANATOMI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in train %}
+                            <tr>
+                                <td>{{ row['UMUR'] }}</td>
+                                <td>{{ row['JENIS KELAMIN'] }}</td>
+                                <td>{{ row['FOTO TORAKS'] }}</td>
+                                <td>{{ row['STATUS HIV'] }}</td>
+                                <td>{{ row['RIWAYAT DIABETES'] }}</td>
+                                <td>{{ row['HASIL TCM'] }}</td>
+                                <td>{{ row['LOKASI ANATOMI'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>574 Record
+                <p>Akurasi Data Train: {{ train_accuracy }}%</p>
+            </div>
+            <div style="max-width: 400px;">Data Test
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>UMUR</th>
+                                <th>JENIS_KELAMIN</th>
+                                <th>FOTO_TORAKS</th>
+                                <th>STATUS_HIV</th>
+                                <th>RIWAYAT_DIABETES</th>
+                                <th>HASIL_TCM</th>
+                                <th>LOKASI_ANATOMI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in test %}
+                            <tr>
+                                <td>{{ row['UMUR'] }}</td>
+                                <td>{{ row['JENIS KELAMIN'] }}</td>
+                                <td>{{ row['FOTO TORAKS'] }}</td>
+                                <td>{{ row['STATUS HIV'] }}</td>
+                                <td>{{ row['RIWAYAT DIABETES'] }}</td>
+                                <td>{{ row['HASIL TCM'] }}</td>
+                                <td>{{ row['LOKASI ANATOMI'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>143 Record
+                <p>Akurasi Data Test: {{ accuracy }}%</p>
+            </div>
+        </div><br id="section2">
+        <div class="container" id="section3">
+            <h1>Evaluasi</h1>
+            <div class="section">
+                <p>Model KNN kami menggunakan 6 fitur input, yaitu UMUR, JENIS KELAMIN, FOTO TORAKS, STATUS HIV, RIWAYAT DIABETES, dan HASIL TCM. Jumlah tetangga terdekat yang digunakan (nilai k) adalah 3, yang dipilih untuk mencari keseimbangan antara bias dan varians.</p>
+                <p>Proses pelatihan dan evaluasi model dilakukan sebagai berikut:</p>
+                <ul>
+                    <li><strong>Pembagian Dataset:</strong> Dataset dibagi menjadi fitur (X) dan label (y). Fitur-fitur tersebut mencakup semua kolom kecuali LOKASI ANATOMI, yang merupakan label atau target prediksi.</li>
+                    <li><strong>Inisialisasi Model KNN:</strong> Kami menguji model KNN dengan beberapa nilai K yakni 3, 5, dan 7. Didapat :<p>3 = {{ accuracy3 }}%</p>5 = {{ accuracy5 }}%</p>7 = {{ accuracy }}%</p>Dikarenakan semua model yang diuji menunjukkan akurasi yang sama, kami memutuskan untuk memilih model secara acak. Kami memilih model KNN dengan nilai K = 7. Ini berarti model akan mempertimbangkan 7 tetangga terdekat untuk menentukan kelas dari sampel yang diuji.</li>
+                    <li><strong>Pelatihan Model:</strong> Model dilatih menggunakan data latih (training data) yang sudah disediakan. Proses pelatihan KNN cukup sederhana karena tidak ada parameter yang perlu dioptimalkan selain menyimpan data latih.</li>
+                    <li><strong>Prediksi:</strong> Setelah model dilatih, prediksi dilakukan pada data uji (test data) untuk mengukur performa model. Model KNN akan menentukan kelas untuk setiap sampel berdasarkan mayoritas kelas dari 3 tetangga terdekat di ruang fitur.</li>
+                    <li><strong>Evaluasi Model:</strong></li>
+                    <ul>
+                        <li><strong>Akurasi:</strong> Menghitung persentase prediksi yang benar terhadap total sampel uji.</li>
+                        <li><strong>Classification Report:</strong> Menyediakan metrik precision, recall, dan f1-score untuk setiap kelas.</li>
+                        <li><strong>Confusion Matrix:</strong> Menampilkan matriks kesalahan yang menunjukkan jumlah prediksi benar dan salah untuk setiap kelas.</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="section">
+                <h4>Hasil Evaluasi</h4>
+                <p><strong>Akurasi:</strong> {{ accuracy }}%</p>
+                <h4>Classification Report:</h4>
+                <pre>
+                precision    recall  f1-score   support
+
+           0       {{ class_report['0']['precision']|round(2) }}      {{ class_report['0']['recall']|round(2) }}      {{ class_report['0']['f1-score']|round(2) }}       {{ class_report['0']['support'] }}
+           1       {{ class_report['1']['precision']|round(2) }}      {{ class_report['1']['recall']|round(2) }}      {{ class_report['1']['f1-score']|round(2) }}        {{ class_report['1']['support'] }}
+
+accuracy                              {{ class_report['accuracy']|round(2) }}       {{ class_report['support'] }}
+macro avg          {{ class_report['macro avg']['precision']|round(2) }}      {{ class_report['macro avg']['recall']|round(2) }}      {{ class_report['macro avg']['f1-score']|round(2) }}       {{ class_report['macro avg']['support'] }}
+weighted avg      {{ class_report['weighted avg']['precision']|round(2) }}      {{ class_report['weighted avg']['recall']|round(2) }}      {{ class_report['weighted avg']['f1-score']|round(2) }}       {{ class_report['weighted avg']['support'] }}
+                </pre>
+                <h4>Confusion Matrix:</h4>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Predicted 0</th>
+                        <th>Predicted 1</th>
+                    </tr>
+                    <tr>
+                        <th>Actual 0</th>
+                        <td>{{ conf_matrix[0][0] }}</td>
+                        <td>{{ conf_matrix[0][1] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Actual 1</th>
+                        <td>{{ conf_matrix[1][0] }}</td>
+                        <td>{{ conf_matrix[1][1] }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="section">
+            <h4>Kesimpulan</h4>
+            <p>Pada Model KNN ini menunjukkan performa yang cukup baik dengan akurasi {{ accuracy }}. Precision, recall, dan f1-score untuk masing-masing kelas juga cukup tinggi, terutama untuk kelas mayoritas (kelas 0). Namun, performa untuk kelas minoritas (kelas 1) sedikit lebih rendah, yang ditunjukkan oleh nilai recall sebesar 0.71.</p>
+        </div>
+        
+    </div>
+        
+</div>
+{% endblock %}

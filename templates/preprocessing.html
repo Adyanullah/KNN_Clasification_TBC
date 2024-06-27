@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Preprocessing</h1>
+    <div class="sub-container">Preprocessing dalam pengolahan data adalah serangkaian langkah atau teknik yang digunakan untuk membersihkan, mengubah, dan mempersiapkan data mentah menjadi bentuk yang lebih sesuai untuk analisis atau pemodelan data. Tujuan utama dari preprocessing adalah untuk meningkatkan kualitas data, menghilangkan noise atau gangguan, serta membuat data siap untuk diproses oleh algoritma pembelajaran mesin atau model statistik.
+        <div class="section">
+            <br id="section1"><h3>Langkah-langkah preprocessing:</h3>
+            <h4 >Menyingkirkan atribut yang tidak diperlukan:</h4>
+            <p>Dalam dataset ini, terdapat atribut yang tidak berdampak pada penentuan apakah seorang pasien menderita TBC paru atau TBC Ekstra Paru. Salah satu contoh fitur yang tidak berguna adalah informasi tentang kecamatan. Oleh karena itu, akan lebih efisien untuk menghapus fitur tersebut dari dataset.</p>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <div style="max-width: 400px;">Data Asli 
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>UMUR</th>
+                                <th>JENIS_KELAMIN</th>
+                                <th>KECAMATAN</th>
+                                <th>FOTO_TORAKS</th>
+                                <th>STATUS_HIV</th>
+                                <th>RIWAYAT_DIABETES</th>
+                                <th>HASIL_TCM</th>
+                                <th>LOKASI_ANATOMI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                            <tr>
+                                <td>{{ row['UMUR'] }}</td>
+                                <td>{{ row['JENIS KELAMIN'] }}</td>
+                                <td>{{ row['KECAMATAN'] }}</td>
+                                <td>{{ row['FOTO TORAKS'] }}</td>
+                                <td>{{ row['STATUS HIV'] }}</td>
+                                <td>{{ row['RIWAYAT DIABETES'] }}</td>
+                                <td>{{ row['HASIL TCM'] }}</td>
+                                <td>{{ row['LOKASI ANATOMI'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="max-width: 400px;">Data Seletah penghapusan atribut 
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>UMUR</th>
+                                <th>JENIS_KELAMIN</th>
+                                <th>FOTO_TORAKS</th>
+                                <th>STATUS_HIV</th>
+                                <th>RIWAYAT_DIABETES</th>
+                                <th>HASIL_TCM</th>
+                                <th>LOKASI_ANATOMI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                            <tr>
+                                <td>{{ row['UMUR'] }}</td>
+                                <td>{{ row['JENIS KELAMIN'] }}</td>
+                                <td>{{ row['FOTO TORAKS'] }}</td>
+                                <td>{{ row['STATUS HIV'] }}</td>
+                                <td>{{ row['RIWAYAT DIABETES'] }}</td>
+                                <td>{{ row['HASIL TCM'] }}</td>
+                                <td>{{ row['LOKASI ANATOMI'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="sub-container" id="section2">
+        <div class="section">
+            <h4>Mengidentifikasi dan Mengatasi Missing Value:</h4>
+            <p>Setelah melakukan analisis data, kami berhasil mengidentifikasi keberadaan missing values dalam dataset. Ditemukan bahwa beberapa atribut memiliki missing values, seperti "tidak dilakukan" untuk atribut foto toraks, "tidak diketahui" untuk atribut riwayat diabetes, "tidak diketahui" untuk atribut status HIV, dan "tidak dilakukan" untuk atribut hasil TCM.</p><p>Untuk mengatasi masalah ini, kami menggunakan metode imputasi dengan menerapkan modus, yaitu nilai yang paling sering muncul dalam setiap atribut. Dengan pendekatan ini, kami memastikan bahwa dataset menjadi lebih lengkap dan akurat untuk analisis lebih lanjut.</p>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>UMUR</th>
+                    <th>JENIS_KELAMIN</th>
+                    <th>FOTO_TORAKS</th>
+                    <th>STATUS_HIV</th>
+                    <th>RIWAYAT_DIABETES</th>
+                    <th>HASIL_TCM</th>
+                    <th>LOKASI_ANATOMI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in missing %}
+                <tr>
+                    <td>{{ row['UMUR'] }}</td>
+                    <td>{{ row['JENIS KELAMIN'] }}</td>
+                    <td>{{ row['FOTO TORAKS'] }}</td>
+                    <td>{{ row['STATUS HIV'] }}</td>
+                    <td>{{ row['RIWAYAT DIABETES'] }}</td>
+                    <td>{{ row['HASIL TCM'] }}</td>
+                    <td>{{ row['LOKASI ANATOMI'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="sub-container" id="section3">
+        <div class="section">
+            <h4>Transformasi Nilai Atribut:</h4>
+            <p>Dalam dataset ini, terdapat atribut yang tidak berdampak pada penentuan apakah seorang pasien menderita TBC paru atau TBC Ekstra Paru. Salah satu contoh fitur yang tidak berguna adalah informasi tentang kecamatan. Oleh karena itu, akan lebih efisien untuk menghapus fitur tersebut dari dataset.</p>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>UMUR</th>
+                    <th>JENIS_KELAMIN</th>
+                    <th>FOTO_TORAKS</th>
+                    <th>STATUS_HIV</th>
+                    <th>RIWAYAT_DIABETES</th>
+                    <th>HASIL_TCM</th>
+                    <th>LOKASI_ANATOMI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in transform %}
+                <tr>
+                    <td>{{ row['UMUR'] }}</td>
+                    <td>{{ row['JENIS KELAMIN'] }}</td>
+                    <td>{{ row['FOTO TORAKS'] }}</td>
+                    <td>{{ row['STATUS HIV'] }}</td>
+                    <td>{{ row['RIWAYAT DIABETES'] }}</td>
+                    <td>{{ row['HASIL TCM'] }}</td>
+                    <td>{{ row['LOKASI ANATOMI'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="sub-container">
+        <p>Model machine learning tidak dapat memproses data berbentuk teks secara langsung. Pada dataset TB yang kita miliki, terdapat beberapa data dalam bentuk teks. Oleh karena itu, perlu dilakukan transformasi pada dataset agar model dapat memprosesnya dengan benar. Kami melakukan transformasi ini pada fitur jenis kelamin, foto toraks, status HIV, riwayat diabetes, lokasi anatomi, serta kolom kelas.</p>
+        
+        <h4>Keterangan Nilai Atribut dari Transformasi yang dilakukan:</h4>
+    <ul>
+        <li><strong>Jenis Kelamin:</strong>
+            <ul>
+                <li>P: 0</li>
+                <li>L: 1</li>
+            </ul>
+        </li>
+        <li><strong>Foto Toraks:</strong>
+            <ul>
+                <li>Negatif: 0</li>
+                <li>Positif: 1</li>
+            </ul>
+        </li>
+        <li><strong>Status HIV:</strong>
+            <ul>
+                <li>Negatif: 0</li>
+                <li>Positif: 1</li>
+            </ul>
+        </li>
+        <li><strong>Riwayat Diabetes:</strong>
+            <ul>
+                <li>Tidak: 0</li>
+                <li>Ya: 1</li>
+            </ul>
+        </li>
+        <li><strong>Hasil TCM:</strong>
+            <ul>
+                <li>Negatif: 0</li>
+                <li>Rif Sensitif: 1</li>
+                <li>Rif Resisten: 2</li>
+            </ul>
+        </li>
+        <li><strong>Lokasi Anatomi:</strong>
+            <ul>
+                <li>Paru: 0</li>
+                <li>Ekstra Paru: 1</li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}
